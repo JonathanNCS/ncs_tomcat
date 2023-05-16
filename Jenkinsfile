@@ -8,6 +8,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo 'maven clean'
+                //ABC indicates the folder name where the pom.xml file resides
+                bat ' mvn -f C:/Users/D1347965/OneDrive - NCS Pte Ltd/Desktop/Bootcamp/DevSecOps/tomcat/ncs_tomcat/web-thymeleaf-war/pom.xml clean install' 
                 echo 'Compile..'
                 echo "workspace ${env.WORKSPACE}" 
                 echo "BuildNumber :: ${env.BUILD_NUMBER}"
