@@ -26,7 +26,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Stop catalina"
-                sh '''
+                // sh '''
+                bat '''
 
                   cd $ROOT_PATH
                   pwd
@@ -36,7 +37,8 @@ pipeline {
 
                 echo 'Deploying....'
                 echo "Remove older war files"
-                sh '''
+                // sh '''
+                bat '''
                    ls -ltr $APP_PATH
                    rm -rf $APP_PATH/sample*
 
@@ -45,15 +47,19 @@ pipeline {
                    
                    echo "deploy new application"
                 '''
-                sh "ls -ltr ${TEMP_DIR}/sample_${env.BUILD_NUMBER}.war"
-                sh "cp ${TEMP_DIR}/sample_${env.BUILD_NUMBER}.war $APP_PATH/sample.war"
-                sh "ls -ltr $APP_PATH" 
+                // sh "ls -ltr ${TEMP_DIR}/sample_${env.BUILD_NUMBER}.war"
+                // sh "cp ${TEMP_DIR}/sample_${env.BUILD_NUMBER}.war $APP_PATH/sample.war"
+                // sh "ls -ltr $APP_PATH" 
+                bat "ls -ltr ${TEMP_DIR}/sample_${env.BUILD_NUMBER}.war"
+                bat "cp ${TEMP_DIR}/sample_${env.BUILD_NUMBER}.war $APP_PATH/sample.war"
+                bat "ls -ltr $APP_PATH" 
             }
         }
        stage('Start Catalina') {
            steps {
                echo "Start catalina"
-                sh '''
+                // sh '''
+                bat '''
 
                   cd $ROOT_PATH
                   pwd
